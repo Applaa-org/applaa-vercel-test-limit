@@ -11,6 +11,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Index from "./pages/Index";
+import Layout from './components/layout/Layout';
 
 const queryClient = new QueryClient();
 
@@ -19,9 +20,11 @@ const rootRoute = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <Outlet />
+        <Layout>
+          <Toaster />
+          <Sonner />
+          <Outlet />
+        </Layout>
       </TooltipProvider>
     </QueryClientProvider>
   ),
@@ -54,4 +57,3 @@ declare module '@tanstack/react-router' {
 const App = () => <RouterProvider router={router} />
 
 export default App;
-
